@@ -3,17 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TodoList</title>
+    <title>Scheduled To-Do List</title>
+    <!-- Link to the CSS file -->
     <link rel="stylesheet" href="style.css">
+    <!-- Import Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    </style>
 </head>
 <body>
-    <h1>To-Do List</h1>
-<h3>Add Your Task Here!</h3>
-    <!-- Input and button to add new todos  -->
-     <input type="text" id="todo-input" placeholder="Enter a todo and press Add or Enter">
 
-     <button id="add-btn">Add</button>
-     <ul id="todo-list"></ul>
-     <script src="script.js"></script>
+    <div id="app-container">
+        <h1 id="main-title">Scheduled To-Do List</h1>
+
+        <!-- Calendar View -->
+        <div id="calendar-view">
+            <div id="calendar-header">
+                <button id="prev-month-btn">&lt;</button>
+                <h2 id="current-month-year"></h2>
+                <button id="next-month-btn">&gt;</button>
+            </div>
+            <div id="calendar-days-of-week"></div>
+            <div id="calendar-dates"></div>
+        </div>
+        
+        <!-- Date/Frequency Selector for New Tasks -->
+        <div class="task-scheduler">
+             <input type="date" id="task-date-input" title="Set Due Date">
+             <select id="task-frequency">
+                 <option value="once">Once</option>
+                 <option value="daily">Daily</option>
+                 <option value="weekly">Weekly</option>
+                 <option value="monthly">Monthly</option>
+             </select>
+        </div>
+
+
+        <!-- Input Group -->
+        <div class="input-group">
+            <input type="text" id="todo-input" placeholder="Enter a new task...">
+            <button id="add-btn">Add</button>
+        </div>
+        
+        <!-- Task List -->
+        <ul id="todo-list">
+            <!-- Tasks will be injected here by script.js -->
+        </ul>
+
+        <p id="empty-state" class="hidden">No tasks scheduled for this date. Add one above!</p>
+        
+        <!-- Custom Modal for Confirmation -->
+        <div id="modal" class="hidden">
+            <div>
+                <h3 id="modal-title">Confirm Action</h3>
+                <p id="modal-body">Are you sure you want to proceed?</p>
+                <div class="modal-actions">
+                    <button id="modal-cancel">Cancel</button>
+                    <button id="modal-confirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
