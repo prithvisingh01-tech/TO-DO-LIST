@@ -1,379 +1,517 @@
-/* Global Reset and Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+    color: #e4e4e4;
+    padding-left: 25%;
+    margin: 5%;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #2d3748;
+    
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6; /* Light background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e4e4e4;
     min-height: 100vh;
+    padding: 20px;
 }
 
-#app-container {
-    width: 100%;
-    max-width: 500px;
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.hidden {
-    display: none !important;
-}
-
-h1 {
-    font-size: 2.25rem; /* 36px */
-    font-weight: 800;
+header {
     text-align: center;
-    color: #1f2937; /* Dark Gray */
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 40px;
+    padding: 30px 0;
 }
 
-/* --- Calendar Styles --- */
-#calendar-view {
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
+header h1 {
+    font-size: 3em;
+    color: #00d4ff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    margin-bottom: 10px;
 }
 
-#calendar-header {
+.subtitle {
+    color: #a0a0a0;
+    font-size: 1.2em;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 30px;
+}
+
+/* Task Input Section */
+.task-input-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.task-input-section h2 {
+    color: #00d4ff;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+#taskInput {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+#taskInput:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+#taskDescription {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1em;
+    margin-bottom: 20px;
+    min-height: 80px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+#taskDescription:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.task-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+#taskPriority , option{
+    background-color: #2d3748;
+    color: #ffffff;
+}
+
+
+
+.input-group i {
+    margin-right: 5px;
+    color: #00d4ff;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1em;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #00d4ff;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+}
+
+/* Task List Section */
+.task-list-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.task-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-#calendar-header h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0;
-    color: #1f2937;
+.task-header h2 {
+    color: #00d4ff;
+    font-size: 1.5em;
 }
 
-#calendar-header button {
-    background: none;
-    border: 1px solid #ccc;
-    padding: 0.5rem 0.8rem;
-    border-radius: 0.5rem;
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #a0a0a0;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.filter-btn.active {
+    background: #00d4ff;
+    color: #1a1a2e;
+    border-color: #00d4ff;
+}
+
+#taskList {
+    list-style: none;
+}
+
+.task-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    border-left: 4px solid;
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.task-item.priority-high {
+    border-left-color: #ff4757;
+}
+
+.task-item.priority-medium {
+    border-left-color: #ffa502;
+}
+
+.task-item.priority-low {
+    border-left-color: #26de81;
+}
+
+.task-item.completed {
+    opacity: 0.6;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #00d4ff;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 1.2em;
     font-weight: 600;
-    color: #3b82f6;
-    transition: background-color 0.15s;
+    color: #fff;
+    margin-bottom: 8px;
 }
 
-#calendar-header button:hover {
-    background-color: #eef2ff;
+.task-description {
+    color: #a0a0a0;
+    margin-bottom: 10px;
+    font-size: 0.95em;
 }
 
-#calendar-days-of-week {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: 600;
-    color: #6b7280;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
+.task-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 0.85em;
+    color: #888;
 }
 
-#calendar-dates {
+.task-meta span i {
+    margin-right: 5px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-btn {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.task-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.task-btn.delete {
+    background: rgba(255, 71, 87, 0.2);
+}
+
+.task-btn.delete:hover {
+    background: rgba(255, 71, 87, 0.4);
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h3 {
+    color: #00d4ff;
+    font-size: 1.3em;
+}
+
+.calendar-header button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: #00d4ff;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.calendar-header button:hover {
+    background: rgba(0, 212, 255, 0.2);
+}
+
+.calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
+    margin-bottom: 10px;
+}
+
+.day-label {
     text-align: center;
-}
-
-.calendar-date {
-    padding: 0.5rem 0;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.1s;
-    position: relative;
-    font-size: 1rem;
-}
-
-.calendar-date:hover:not(.empty):not(.selected) {
-    background-color: #e0f2fe;
-}
-
-.calendar-date.today {
-    font-weight: 700;
-    border: 2px solid #2563eb;
-}
-
-.calendar-date.selected {
-    background-color: #2563eb;
-    color: white;
-    font-weight: 700;
-}
-
-.calendar-date.has-task::after {
-    content: '';
-    position: absolute;
-    bottom: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background-color: #ef4444; /* Red dot for tasks */
-    border-radius: 50%;
-}
-
-.calendar-date.empty {
-    color: #ccc;
-    cursor: default;
-}
-
-/* --- Task Scheduler Input --- */
-.task-scheduler {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-#task-date-input, #task-frequency {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    outline: none;
-    flex-grow: 1;
-    transition: border-color 0.15s;
-    background-color: white;
-}
-#task-frequency {
-    flex-grow: 0;
-    width: 100px;
-}
-
-/* --- Input Group (Add Task) --- */
-.input-group {
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-}
-
-#todo-input {
-    flex-grow: 1;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-#todo-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-#add-btn {
-    background-color: #2563eb;
-    color: white;
-    padding: 0.75rem 1.25rem;
-    border-radius: 0.5rem;
+    color: #00d4ff;
     font-weight: 600;
-    transition: background-color 0.15s, transform 0.15s;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    font-size: 0.85em;
 }
 
-#add-btn:hover {
-    background-color: #1d4ed8;
-    transform: scale(1.01);
-}
-#add-btn:active {
-    transform: scale(0.99);
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
 }
 
-/* --- To-Do List --- */
-#todo-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-/* List Item Base */
-.todo-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
-    background-color: #ffffff;
-    border-left: 4px solid #3b82f6;
-}
-/* Task Metadata (Due Date, Frequency) */
-.task-meta {
-    font-size: 0.75rem;
-    color: #6b7280;
-    margin-top: 4px;
-    font-weight: 600;
-}
-
-
-/* Completed State */
-.todo-item.completed {
-    opacity: 0.7;
-    border-left-color: #fbbf24;
-}
-
-.todo-item.completed .task-text {
-    text-decoration: line-through;
-    color: #6b7280;
-}
-
-/* Task Text and Container */
-.task-content {
-    flex-grow: 1;
-    margin-right: 1rem;
-    padding: 2px 0;
-}
-
-.task-text {
-    display: block;
-    color: #1f2937;
-    font-size: 1.125rem;
-    word-break: break-word;
-}
-
-
-/* Actions */
-.actions {
-    display: flex;
-    gap: 0.5rem;
-    flex-shrink: 0;
-}
-
-/* Action Button Base */
-.action-btn {
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.15s, transform 0.1s;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
-    line-height: 1;
-}
-.action-btn:active {
-    transform: scale(0.95);
-}
-
-/* Specific Button Styles */
-.complete-btn {
-    background-color: #10b981;
-}
-.complete-btn:hover {
-    background-color: #059669;
-}
-
-.edit-btn {
-    background-color: #3b82f6;
-}
-.edit-btn.save-mode {
-    background-color: #10b981;
-}
-.edit-btn:hover {
-    background-color: #2563eb; 
-}
-.edit-btn.save-mode:hover {
-    background-color: #059669;
-}
-
-.delete-btn {
-    background-color: #ef4444;
-}
-.delete-btn:hover {
-    background-color: #dc2626;
-}
-
-/* Modal */
-#modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(17, 24, 39, 0.5);
+.calendar-day {
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 50;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    font-size: 0.9em;
 }
 
-#modal > div {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 24rem;
+.calendar-day:hover {
+    background: rgba(0, 212, 255, 0.2);
 }
 
-.modal-actions {
+.calendar-day.other-month {
+    color: #555;
+}
+
+.calendar-day.today {
+    background: #00d4ff;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+.calendar-day.has-tasks::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 6px;
+    height: 6px;
+    background: #ff4757;
+    border-radius: 50%;
+}
+
+.calendar-day.selected {
+    background: rgba(0, 212, 255, 0.3);
+    border: 2px solid #00d4ff;
+}
+
+/* Stats Section */
+.stats-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.stats-section h3 {
+    color: #00d4ff;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.stat-item {
     display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
 
-#modal-cancel {
-    background-color: #e5e7eb;
-    color: #1f2937;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.15s;
-    cursor: pointer;
-    border: none;
-}
-#modal-cancel:hover {
-    background-color: #d1d5db;
+.stat-item i {
+    font-size: 2em;
+    color: #00d4ff;
 }
 
-#modal-confirm {
-    background-color: #dc2626;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.15s;
-    cursor: pointer;
-    border: none;
-}
-#modal-confirm:hover {
-    background-color: #b91c1c;
+.stat-value {
+    display: block;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
 }
 
-/* Mobile adjustments */
-@media (max-width: 500px) {
-    .task-scheduler, .input-group {
-        flex-direction: column;
-        gap: 10px;
+.stat-label {
+    display: block;
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 212, 255, 0.95);
+    color: #1a1a2e;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.5);
+    transform: translateX(400px);
+    transition: transform 0.3s;
+    z-index: 1000;
+    max-width: 350px;
+    font-weight: 600;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
     }
-    #task-frequency {
-        width: 100%;
+    
+    .right-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
     }
-    #add-btn {
-        width: 100%;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
     }
-    .todo-item {
+    
+    .right-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .task-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .task-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
-    }
-    .actions {
-        width: 100%;
-        justify-content: flex-end;
     }
 }
