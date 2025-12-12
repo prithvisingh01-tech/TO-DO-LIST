@@ -1,72 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scheduled To-Do List</title>
-    <!-- Link to the CSS file -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Import Inter font -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-    </style>
-</head>
-<body>
-
-    <div id="app-container">
-        <h1 id="main-title">Scheduled To-Do List</h1>
-
-        <!-- Calendar View -->
-        <div id="calendar-view">
-            <div id="calendar-header">
-                <button id="prev-month-btn">&lt;</button>
-                <h2 id="current-month-year"></h2>
-                <button id="next-month-btn">&gt;</button>
+    <link rel="stylesheet" href="style1.css">
+    <title>To-Do List</title>
+   </head>
+   <body>
+    <h1 style="text-align: center;">TO-DO LIST </h1>
+    <div class="main-content">
+        <div class="left-section">
+            <!-- Task Input -->
+            <div class="task-input-section">
+                <h2>Add New Task</h2>
+                <input type="text" id="taskInput" placeholder="What needs to be done?">
+                <textarea id="taskDescription" placeholder="Add description (optional)"></textarea>
+                
+                <div class="task-details">
+                    <div class="input-group">
+                        <label><i class="far fa-calendar"></i> Due Date</label>
+                        <input type="date" id="taskDate">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="far fa-clock"></i> Reminder Time</label>
+                        <input type="time" id="taskTime">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-tag"></i> Priority</label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button id="addTaskBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
             </div>
-            <div id="calendar-days-of-week"></div>
-            <div id="calendar-dates"></div>
-        </div>
-        
-        <!-- Date/Frequency Selector for New Tasks -->
-        <div class="task-scheduler">
-             <input type="date" id="task-date-input" title="Set Due Date">
-             <select id="task-frequency">
-                 <option value="once">Once</option>
-                 <option value="daily">Daily</option>
-                 <option value="weekly">Weekly</option>
-                 <option value="monthly">Monthly</option>
-             </select>
+
+            <!-- Task List -->
+            <div class="task-list-section">
+                <div class="task-header">
+                    <h2>My Tasks</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="active">Active</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+                <ul id="taskList"></ul>
+            </div>
         </div>
 
+        <div class="right-section">
+            <!-- Calendar -->
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="currentMonth"></h3>
+                    <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-days">
+                    <div class="day-label">Sun</div>
+                    <div class="day-label">Mon</div>
+                    <div class="day-label">Tue</div>
+                    <div class="day-label">Wed</div>
+                    <div class="day-label">Thu</div>
+                    <div class="day-label">Fri</div>
+                    <div class="day-label">Sat</div>
+                </div>
+                <div id="calendarGrid" class="calendar-grid"></div>
+            </div>
 
-        <!-- Input Group -->
-        <div class="input-group">
-            <input type="text" id="todo-input" placeholder="Enter a new task...">
-            <button id="add-btn">Add</button>
-        </div>
-        
-        <!-- Task List -->
-        <ul id="todo-list">
-            <!-- Tasks will be injected here by script.js -->
-        </ul>
-
-        <p id="empty-state" class="hidden">No tasks scheduled for this date. Add one above!</p>
-        
-        <!-- Custom Modal for Confirmation -->
-        <div id="modal" class="hidden">
-            <div>
-                <h3 id="modal-title">Confirm Action</h3>
-                <p id="modal-body">Are you sure you want to proceed?</p>
-                <div class="modal-actions">
-                    <button id="modal-cancel">Cancel</button>
-                    <button id="modal-confirm">Confirm</button>
+            <!-- Stats -->
+            <div class="stats-section">
+                <h3>Statistics</h3>
+                <div class="stat-item">
+                    <i class="fas fa-list-check"></i>
+                    <div>
+                        <span class="stat-value" id="totalTasks">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-circle-check"></i>
+                    <div>
+                        <span class="stat-value" id="completedTasks">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-hourglass-half"></i>
+                    <div>
+                        <span class="stat-value" id="pendingTasks">0</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+</div>
 
-    <!-- Link to the JavaScript file -->
-    <script src="script.js"></script>
+<!-- Notification -->
+<div id="notification" class="notification"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
