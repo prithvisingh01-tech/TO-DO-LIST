@@ -1,115 +1,117 @@
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - To-Do List</title>
     <link rel="stylesheet" href="style1.css">
-    <title>To-Do List</title>
-   </head>
-   <body>
-     <div class="heading">
-    <span class="symbol">✔</span>
-    <h1>TO-DO LIST</h1>
-</div>
-    <div class="main-content">
-        <div class="left-section">
-            <!-- Task Input -->
-            <div class="task-input-section">
-                <h2>Add New Task</h2>
-                <input type="text" id="taskInput" placeholder="What needs to be done?">
-                <textarea id="taskDescription" placeholder="Add description (optional)"></textarea>
-                
-                <div class="task-details">
-                    <div class="input-group">
-                        <label><i class="far fa-calendar"></i> Due Date</label>
-                        <input type="date" id="taskDate">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tasks"></i> TO-DO-LIST</h1>
+            <p class="subtitle">Organize your life, one task at a time</p>
+        </header>
+
+        <div class="main-content">
+            <div class="left-section">
+                <!-- Task Input -->
+                <div class="task-input-section">
+                    <h2>Add New Task</h2>
+                    <input type="text" id="taskInput" placeholder="What needs to be done?">
+                    <textarea id="taskDescription" placeholder="Add description (optional)"></textarea>
+                    
+                    <div class="task-details">
+                        <div class="input-group">
+                            <label><i class="far fa-calendar"></i> Due Date</label>
+                            <input type="date" id="taskDate">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="far fa-clock"></i> Reminder Time</label>
+                            <input type="time" id="taskTime">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-tag"></i> Priority</label>
+                            <select id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label><i class="far fa-clock"></i> Reminder Time</label>
-                        <input type="time" id="taskTime">
-                    </div>
-                    <div class="input-group">
-                        <label><i class="fas fa-tag"></i> Priority</label>
-                        <select id="taskPriority">
-                            <option value="low">Low</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </div>
+                    
+                    <button id="addTaskBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
                 </div>
-                
-                <button id="addTaskBtn" class="btn-primary">
-                    <i class="fas fa-plus"></i> Add Task
-                </button>
+
+                <!-- Task List -->
+                <div class="task-list-section">
+                    <div class="task-header">
+                        <h2>My Tasks</h2>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="active">Active</button>
+                            <button class="filter-btn" data-filter="completed">Completed</button>
+                        </div>
+                    </div>
+                    <ul id="taskList"></ul>
+                </div>
             </div>
 
-            <!-- Task List -->
-            <div class="task-list-section">
-                <div class="task-header">
-                    <h2>My Tasks</h2>
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="active">Active</button>
-                        <button class="filter-btn" data-filter="completed">Completed</button>
+            <div class="right-section">
+                <!-- Calendar -->
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="currentMonth"></h3>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
                     </div>
+                    <div class="calendar-days">
+                        <div class="day-label">Sun</div>
+                        <div class="day-label">Mon</div>
+                        <div class="day-label">Tue</div>
+                        <div class="day-label">Wed</div>
+                        <div class="day-label">Thu</div>
+                        <div class="day-label">Fri</div>
+                        <div class="day-label">Sat</div>
+                    </div>
+                    <div id="calendarGrid" class="calendar-grid"></div>
                 </div>
-                <ul id="taskList"></ul>
-            </div>
-        </div>
 
-        <div class="right-section">
-            <!-- Calendar -->
-            <div class="calendar-section">
-                <div class="calendar-header">
-                    <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
-                    <h3 id="currentMonth"></h3>
-                    <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="calendar-days">
-                    <div class="day-label">Sun</div>
-                    <div class="day-label">Mon</div>
-                    <div class="day-label">Tue</div>
-                    <div class="day-label">Wed</div>
-                    <div class="day-label">Thu</div>
-                    <div class="day-label">Fri</div>
-                    <div class="day-label">Sat</div>
-                </div>
-                <div id="calendarGrid" class="calendar-grid"></div>
-            </div>
-
-            <!-- Stats -->
-            <div class="stats-section">
-                <h3>Statistics</h3>
-                <div class="stat-item">
-                    <i class="fas fa-list-check"></i>
-                    <div>
-                        <span class="stat-value" id="totalTasks">0</span>
-                        <span class="stat-label">Total Tasks</span>
+                <!-- Stats -->
+                <div class="stats-section">
+                    <h3>Statistics</h3>
+                    <div class="stat-item">
+                        <i class="fas fa-list-check"></i>
+                        <div>
+                            <span class="stat-value" id="totalTasks">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-circle-check"></i>
-                    <div>
-                        <span class="stat-value" id="completedTasks">0</span>
-                        <span class="stat-label">Completed</span>
+                    <div class="stat-item">
+                        <i class="fas fa-circle-check"></i>
+                        <div>
+                            <span class="stat-value" id="completedTasks">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-hourglass-half"></i>
-                    <div>
-                        <span class="stat-value" id="pendingTasks">0</span>
-                        <span class="stat-label">Pending</span>
+                    <div class="stat-item">
+                        <i class="fas fa-hourglass-half"></i>
+                        <div>
+                            <span class="stat-value" id="pendingTasks">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Notification -->
-<div id="notification" class="notification"></div>
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+    <script src="Script1.js"></script>
 
-<script src="script.js"></script>
 </body>
 </html>
-
